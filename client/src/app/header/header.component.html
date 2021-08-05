@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>OnLine-Shopping</span>
+        <mat-icon>local_grocery_store</mat-icon>
+        <div class="contact">Contact Us: 03-9153456</div>
+
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <div>
+            <span>Hello </span><span class="userFirstName">{{user.firstName}}</span>
+
+        </div>
+        <div class="logout" *ngIf="user">
+            <button mat-flat-button color="primary" (click)="logout()">Logout</button>
+
+        </div>
+
+    </mat-toolbar-row>
+
+
+</mat-toolbar>

@@ -1,0 +1,70 @@
+<!-- side-nav -->
+<div class="admin-products">
+    <h1 *ngIf="isEdit===false">Adding new product</h1>
+    <h1 *ngIf="isEdit===true">Edit Product</h1>
+    <form [formGroup]="productForm">
+
+        <mat-form-field class="example-full-width inputProduct">
+            <mat-label>Product Name</mat-label>
+            <input matInput formControlName="productName" required>
+            <mat-error *ngIf="productForm.get('productName').hasError('required')">
+                Please enter your product name
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width inputProduct">
+            <mat-label>Product Price</mat-label>
+            <input matInput type="number" formControlName="productPrice" required>
+            <mat-error *ngIf="productForm.get('productPrice').hasError('required')">
+                Please enter your product price
+            </mat-error>
+        </mat-form-field>
+
+        <div class="example-full-width inputProduct">
+            <label>Product Image</label>
+            <input matInput readonly name="productImage" formControlName='productImage' />
+
+            <div class="input-container">
+                <button mat-flat-button color="primary">
+                    Browse File
+                </button>
+                <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile"
+                accept="image/*" />
+                <br/>
+                <button mat-flat-button color="primary" [disabled]="dataImage===null" (click)="uploadImage()">
+                    Upload File
+                </button>
+              
+            </div>
+
+            <div>
+                <img [src]="dataImage" width="100px" />
+            </div>
+
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width inputProduct">
+                <mat-label>Category</mat-label>
+                <select matNativeControl required formControlName="productCategory" name="productCategory">
+                    <option value="">Please choose</option>
+                    <option *ngFor="let category of categories" [value]="category._id">
+                        {{category.name}}
+                    </option>
+                </select>
+                <mat-error *ngIf="productForm.get('productCategory').hasError('required')">
+                    Please choose your category
+                </mat-error>
+
+            </mat-form-field>
+        </div>
+        <div class="button">
+            <button *ngIf="isEdit===false" mat-raised-button color="primary" (click)="addProduct()">Add Product</button>
+            <button *ngIf="isEdit===true" mat-raised-button color="primary" (click)="editProduct()">Edit
+                Product</button>
+        </div>
+    </form>
+
+
+
+</div>

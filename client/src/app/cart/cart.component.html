@@ -1,0 +1,43 @@
+<div class="cart-container">
+
+  <h3>My cart
+    <mat-icon> local_grocery_store</mat-icon>
+  </h3>
+
+  <div>
+    <button mat-flat-button color="primary" *ngIf="cart && cart.cartItems.length>0 && !isOrder"
+      (click)="removeAllCartItems()">Delete all</button>
+
+  </div>
+
+  <mat-list *ngIf="cart">
+    <mat-list-item *ngFor="let cartItem of cart.cartItems">
+      <div>
+        <label>Name:{{cartItem.product.name}} </label>
+        <div class="img-cart">
+          <img src="{{BASE_URL}}{{cartItem.product.image}}" class="imgProduct" />
+        </div>
+        <div>
+          <label>Price: {{ cartItem.generalPrice }} </label>
+        </div>
+        <div>
+          <label>Qty: {{ cartItem.quantity }} </label>
+        </div>
+        <div class="removeIcon" *ngIf="!isOrder">
+          <mat-icon (click)="removeCartItem(cartItem._id)"> delete_forever </mat-icon>
+        </div>
+      </div>
+
+
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+
+
+  <div *ngIf="cart && cart.cartItems.length>0">Total: {{ totalProductsPrice }} </div>
+
+  <hr>
+  <div class="cartButton" *ngIf="!isOrder && (cart && cart.cartItems.length>0)">
+    <button mat-raised-button color="primary" (click)="order()">Order</button>
+  </div>
+</div>

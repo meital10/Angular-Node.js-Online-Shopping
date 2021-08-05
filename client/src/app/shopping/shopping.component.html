@@ -1,0 +1,28 @@
+<div class="shopping-container">
+
+
+  <app-header> </app-header>
+
+  <button mat-fab color="primary" *ngIf="isAdmin" aria-label="Add a  new product" (click)="showAddProduct()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button type="button" color="primary" *ngIf="!isAdmin" mat-button (click)="drawer.toggle()">
+    <label *ngIf="drawer.opened">Hide Cart</label>
+    <label *ngIf="!drawer.opened">Show Cart</label>
+  </button>
+  <mat-drawer-container class="drawer-container">
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <app-admin-products *ngIf="isAdmin===true" [product]="editedProduct" (onEditedProduct)="hasBeenEdited($event)">
+      </app-admin-products>
+      <app-cart *ngIf="isAdmin===false" [cart]="cart" (onDeleteCartItem)="removeCartItem($event)"></app-cart>
+    </mat-drawer>
+    <div class="example-sidenav-content">
+      <app-product-list [isAdmin]="isAdmin" [products]="allProducts" [categories]="allCategories"
+        (onSelectedCategory)="getProductsByCategory($event)" (onSelectedProduct)="selectProduct($event)">
+      </app-product-list>
+
+    </div>
+
+  </mat-drawer-container>
+
+</div>

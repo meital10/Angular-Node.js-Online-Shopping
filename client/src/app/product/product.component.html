@@ -1,0 +1,25 @@
+<div class="product-container" [ngClass]="{'admin':isAdmin,'user':!isAdmin}">
+    <mat-card class="product" (click)="selectedProduct()">
+        <mat-card-content class="productImage">
+            <img src="{{base_url}}{{product.image}}" width="100px" height="80px"><br />
+            <label>Name : {{product.name}}</label><br />
+            <label>Price : {{product.price}} $</label>
+
+            <form class="selection">
+                <mat-form-field>
+                    <mat-label>Quantity</mat-label>
+                    <div class="quantityInput">
+                        <input matInput type="number" placeholder="Ex. 12" name="quantity" [(ngModel)]="quantity"
+                            min="1">
+                    </div>
+
+                </mat-form-field>
+
+                <button mat-mini-fab (click)="addToCart()">
+                    <mat-icon>add_shopping_cart</mat-icon>
+                </button>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,25 @@
+.firstName,
+.lastName,
+.email,
+.userId,
+.city,
+.street,
+.password,
+.confirm,
+.button {
+  width: 30%;
+  margin-left: 35%;
+}
+
+.button {
+  margin-top: 20px;
+}
+
+button {
+  width: 100%;
+}
+
+h2,
+p {
+  color: red;
+}

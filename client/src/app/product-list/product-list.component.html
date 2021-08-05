@@ -1,0 +1,28 @@
+<mat-toolbar>
+
+
+    <span class="material-icons">search</span>
+    <mat-label></mat-label>
+    <input type="text" name="searchText" placeholder="Search for product" [(ngModel)]="searchText" />
+
+</mat-toolbar>
+
+
+<mat-toolbar class="categoryHeader">
+    <a mat-button (click)="chooseCategory(-1)">All</a>
+    <div *ngFor="let category of categories">
+        <a mat-button (click)="chooseCategory(category._id)">{{category.name}}</a>
+    </div>
+
+
+</mat-toolbar>
+
+<div class="product-list-container">
+    <div class="product-list">
+        <div class="productBox" *ngFor="let product of products | filter:searchText">
+            <app-product [isAdmin]="isAdmin" [product]="product" (onSelectedProduct)="selectedProduct($event)">
+            </app-product>
+        </div>
+    </div>
+
+</div>

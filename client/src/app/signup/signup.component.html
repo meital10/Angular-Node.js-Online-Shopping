@@ -1,0 +1,127 @@
+<mat-horizontal-stepper linear>
+    <mat-step label="step 1" [stepControl]="firstFormGroup">
+        <p>Please fill your details</p>
+        <form [formGroup]="firstFormGroup">
+
+            <mat-form-field class="example-full-width userId">
+                <mat-label>User ID</mat-label>
+                <input matInput formControlName="userIdValue" required maxlength="9">
+                <mat-error *ngIf="firstFormGroup.get('userIdValue').hasError('required')">
+                    Please enter your user id
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width email">
+                <mat-label>User Name (email address)</mat-label>
+                <input matInput formControlName="emailValue" required>
+                <mat-error *ngIf="firstFormGroup.get('emailValue').hasError('required')">
+                    Please enter your email
+                </mat-error>
+                <mat-error *ngIf="firstFormGroup.get('emailValue').hasError('email')">
+                    Please enter a valid email
+                </mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width password">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="passwordHide ? 'password' : 'text'" formControlName="passwordValue">
+                <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide">
+                    <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="firstFormGroup.get('passwordValue').hasError('required')">
+                    Please enter a password
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width confirm">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput [type]="confirmHide ? 'password' : 'text'" formControlName="confirmPasswordValue">
+                <button mat-icon-button matSuffix (click)="confirmHide = !confirmHide">
+                    <mat-icon>{{confirmHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="firstFormGroup.get('confirmPasswordValue').hasError('required')">
+                    Please enter a password
+                </mat-error>
+                <mat-error *ngIf="firstFormGroup.get('confirmPasswordValue').hasError('mustMatch')">
+                    Passwords must match
+                </mat-error>
+            </mat-form-field>
+
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step label="step 2" [stepControl]="secondFormGroup">
+        <p>Please complete your details </p>
+        <form [formGroup]="secondFormGroup">
+            <mat-form-field class="example-full-width city">
+                <mat-label>City</mat-label>
+                <select matNativeControl required formControlName="cityValue">
+
+                    <option value="jerusalem">Jerusalem</option>
+                    <option value="telaviv">Tel Aviv</option>
+                    <option value="rishonletzion">Rishon Letzion</option>
+                    <option value="petachtikva">Petach Tikva</option>
+                    <option value="ashdod">Ashdod</option>
+                    <option value="natanya">Natanya</option>
+                    <option value="beersheva">Beer Sheva</option>
+                    <option value="benebrak">Bene Brak</option>
+                    <option value="holon">Holon</option>
+                    <option value="ramatgan">Ramat Gan</option>
+                </select>
+                <mat-error *ngIf="secondFormGroup.get('cityValue').hasError('required')">
+                    Please choose your city
+                </mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width street">
+                <mat-label>Street</mat-label>
+                <input matInput formControlName="streetValue" required>
+                <mat-error *ngIf="secondFormGroup.get('streetValue').hasError('required')">
+                    Please enter your street
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field class="example-full-width firstName">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstNameValue" required>
+                <mat-error *ngIf="secondFormGroup.get('firstNameValue').hasError('required')">
+                    Please enter your first name
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width lastName">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastNameValue" required>
+                <mat-error *ngIf="secondFormGroup.get('lastNameValue').hasError('required')">
+                    Please enter your last name
+                </mat-error>
+            </mat-form-field>
+
+
+
+            <div class="button">
+                <button mat-raised-button color="primary" (click)="signUp()">Sign Up</button>
+            </div>
+        </form>
+    </mat-step>
+
+</mat-horizontal-stepper>
+
+
+
+
+<ng-template #dialogAlert>
+    <h2 matDialogTitle>You have some errors</h2>
+    <div>
+        {{errorMessage}}
+    </div>
+    <mat-dialog-actions>
+        <button mat-button matDialogClose>OK</button>
+    </mat-dialog-actions>
+</ng-template>

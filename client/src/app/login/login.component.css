@@ -1,0 +1,37 @@
+.username,
+.password,
+.button {
+  width: 60%;
+  margin-left: 25%;
+}
+
+.username {
+  margin-top: 50px;
+}
+
+.button {
+  margin-top: 20px;
+}
+
+button {
+  width: 100%;
+}
+
+.notRegistered {
+  width: 40%;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+  color: blue;
+  cursor: pointer;
+}
+
+h2,
+p {
+  color: red;
+}
+
+.login {
+  width: 100%;
+  margin-left: -10%;
+}

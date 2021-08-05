@@ -1,0 +1,18 @@
+mat-sidenav-container {
+  height: 100%;
+}
+/* .shopping-container {
+  height: 100%;
+} */
+mat-sidenav,
+mat-sidenav-content {
+  padding: 15px;
+}
+
+.drawer-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  background-color: floralwhite;
+}

@@ -1,0 +1,43 @@
+<div>
+    <div>Order</div>
+    <form class="order-container" [formGroup]="orderFormGroup">
+        <mat-form-field class="order-form">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="city" required formControlName="city" />
+            <mat-error *ngIf="orderFormGroup.get('city').hasError('required')">
+                Please enter a city
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="order-form">
+            <mat-label>Street</mat-label>
+            <input matInput placeholder="street" required formControlName="street" />
+            <mat-error *ngIf="orderFormGroup.get('street').hasError('required')">
+                Please enter a street
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a delivery date</mat-label>
+            <input matInput [matDatepicker]="picker" required formControlName="orderDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <br />
+
+        <div>Payment</div>
+        <mat-form-field class="order-form">
+
+            <mat-label>Credit Card</mat-label>
+            <input matInput placeholder="payment" formControlName="creditcard" required maxlength="16">
+            <mat-error *ngIf="orderFormGroup.get('creditcard').hasError('validateInput')">
+                Please enter a valid credit cart
+            </mat-error>
+        </mat-form-field>
+
+
+        <div class="button">
+            <button mat-raised-button color="primary" (click)="order()">Order</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,26 @@
+.product {
+  box-sizing: border-box;
+  margin: 40px;
+  margin-right: 40px;
+  margin-left: 40px;
+  cursor: pointer;
+  float: left;
+}
+
+.productImage {
+  text-align: center;
+}
+
+.product-container.user:hover {
+  border: 0;
+}
+.product-container.admin:hover {
+  border: 1px solid black;
+}
+.product-container .product .selection {
+  display: none;
+}
+.product-container.user .product:hover .selection {
+  display: block;
+  position: absolute;
+}
