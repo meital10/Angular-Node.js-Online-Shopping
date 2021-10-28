@@ -32,6 +32,7 @@ const cartController = require('./controllers/cart.controller');
 const cartItemController = require('./controllers/cart-item.controller');
 const ordersController = require('./controllers/orders.controller');
 
+// FOR HEROKU
 // const port = process.env.PORT || 4000;
 app.use(fileUpload({
     limits: { fileSize: 50 * 1024 * 1024 },
@@ -88,8 +89,8 @@ app.post('/upload', (req, res) => {
 });
 
 app.post('/pdf', (req, res) => {
-    const receiptsFileName= req.body.client+"_"+new Date().getTime()+".pdf";
-    markdownpdf().from.string(req.body.receiptString).to(path.join(__dirname, '/public/receipts/'+receiptsFileName), () => {
+    const receiptsFileName = req.body.client + "_" + new Date().getTime() + ".pdf";
+    markdownpdf().from.string(req.body.receiptString).to(path.join(__dirname, '/public/receipts/' + receiptsFileName), () => {
         res.json({ path: `http://localhost:4000/receipts/${receiptsFileName}` });
     });
 });
@@ -112,7 +113,8 @@ const init = async () => {
         app.listen('4000', (err) => {
             console.log('Mongo server up');
         });
-        // app.listen(port, () => {
+        // FOR HEROKU
+        // app.listen(port, (err) => {
         //     console.log( `server up on ${port}` );
         // });
     } catch (err) {
